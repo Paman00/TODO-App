@@ -14,21 +14,24 @@ import { Modal } from "../Modal";
 import { StorageChangeAlert } from "../StorageChangeAlert"
 
 function App() {
+	const { state, stateUpdaters, } = useTodos();
 	const {
 		completedTodos,
 		totalTodos,
 		searchValue,
-		setSearchValue,
 		error,
 		loading,
 		searchedTodos,
+		openModal,
+	} = state;
+	const {
+		setSearchValue,
 		completeTodo,
 		deleteTodo,
-		openModal,
 		setOpenModal,
 		addTodo,
 		synchronizeTodos,
-	} = useTodos();
+	} = stateUpdaters;
 
 	return (
 		<React.Fragment>
@@ -38,12 +41,10 @@ function App() {
 				<TodoCounter 
 					completedTodos={completedTodos} 
 					totalTodos={totalTodos} 				
-					// loading={loading}
 				/>
 				<TodoSearch 
 					searchValue={searchValue} 
 					setSearchValue={setSearchValue} 
-					// loading={loading}
 				/>
 			</TodoHeader>
 
